@@ -489,6 +489,46 @@
   .footer-nav a { color: var(--gray); text-decoration: none; font-size: 12px; transition: color 0.2s; }
   .footer-nav a:hover { color: var(--orange); }
 
+  /* ─────────── CERTIFICATIONS ─────────── */
+  .cert-strip { margin-top: 36px; }
+  .cert-strip-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .cert-strip-label::before { content: '//'; color: rgba(255,107,0,0.35); font-size: 12px; }
+  .cert-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cert-card {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--dark3);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-left: 3px solid var(--orange);
+    padding: 18px 20px;
+    transition: background 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+  }
+  .cert-card:hover {
+    background: var(--dark4);
+    box-shadow: 0 0 0 1px rgba(255,107,0,0.18);
+  }
+  .cert-icon {
+    flex-shrink: 0; width: 38px; height: 38px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cert-icon svg { width: 38px; height: 38px; }
+  .cert-info { flex: 1; min-width: 0; }
+  .cert-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.5px; color: var(--white); line-height: 1.1;
+  }
+  .cert-sub { font-size: 11px; color: var(--muted); font-weight: 300; margin-top: 3px; letter-spacing: 0.3px; }
+  .cert-link {
+    font-size: 11px; color: var(--orange); font-weight: 500;
+    letter-spacing: 1px; white-space: nowrap; margin-left: auto; padding-left: 12px;
+    flex-shrink: 0;
+  }
+
   /* ─────────── UTILS ─────────── */
   .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,107,0,0.3), transparent); }
 
@@ -625,6 +665,7 @@
     .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .about-img { aspect-ratio: 16/9; }
     .feat-list { grid-template-columns: 1fr 1fr; }
+    .cert-cards { grid-template-columns: 1fr; }
 
     /* Products */
     .prod-grid { grid-template-columns: 1fr 1fr; }
@@ -839,6 +880,57 @@
         <div class="feat">Competitive Pricing</div>
         <div class="feat">Custom Configurations</div>
       </div>
+
+      <div class="cert-strip">
+        <div class="cert-strip-label">Certifications</div>
+        <div class="cert-cards">
+          <a href="ISO 9001 Certificate of Mahaveer Engineering.pdf" target="_blank" class="cert-card">
+            <div class="cert-icon">
+              <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs><clipPath id="c1"><circle cx="19" cy="19" r="16"/></clipPath></defs>
+                <g clip-path="url(#c1)" stroke="#FF6B00" stroke-width="1.2" opacity="0.5">
+                  <line x1="3" y1="12.5" x2="35" y2="12.5"/>
+                  <line x1="3" y1="25.5" x2="35" y2="25.5"/>
+                  <line x1="19" y1="3" x2="19" y2="35"/>
+                  <path d="M19,3 A8,16 0 0,0 19,35"/>
+                  <path d="M19,3 A8,16 0 0,1 19,35"/>
+                </g>
+                <circle cx="19" cy="19" r="16" stroke="#FF6B00" stroke-width="1.5"/>
+                <text x="19" y="18" text-anchor="middle" dominant-baseline="middle" font-family="Arial Black,Arial" font-weight="900" font-size="10" fill="#FF6B00" letter-spacing="0.5">ISO</text>
+                <text x="19" y="27.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="600" font-size="6" fill="#FF6B00" letter-spacing="1">9001</text>
+              </svg>
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">ISO 9001:2015</div>
+              <div class="cert-sub">Quality Management System</div>
+            </div>
+            <div class="cert-link">View →</div>
+          </a>
+          <a href="ISO 14001 Certificate of Mahaveer Engineering.pdf" target="_blank" class="cert-card">
+            <div class="cert-icon">
+              <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <defs><clipPath id="c2"><circle cx="19" cy="19" r="16"/></clipPath></defs>
+                <g clip-path="url(#c2)" stroke="#FF6B00" stroke-width="1.2" opacity="0.5">
+                  <line x1="3" y1="12.5" x2="35" y2="12.5"/>
+                  <line x1="3" y1="25.5" x2="35" y2="25.5"/>
+                  <line x1="19" y1="3" x2="19" y2="35"/>
+                  <path d="M19,3 A8,16 0 0,0 19,35"/>
+                  <path d="M19,3 A8,16 0 0,1 19,35"/>
+                </g>
+                <circle cx="19" cy="19" r="16" stroke="#FF6B00" stroke-width="1.5"/>
+                <text x="19" y="18" text-anchor="middle" dominant-baseline="middle" font-family="Arial Black,Arial" font-weight="900" font-size="10" fill="#FF6B00" letter-spacing="0.5">ISO</text>
+                <text x="19" y="27.5" text-anchor="middle" dominant-baseline="middle" font-family="Arial" font-weight="600" font-size="6" fill="#FF6B00" letter-spacing="1">14001</text>
+              </svg>
+            </div>
+            <div class="cert-info">
+              <div class="cert-title">ISO 14001:2015</div>
+              <div class="cert-sub">Environmental Management System</div>
+            </div>
+            <div class="cert-link">View →</div>
+          </a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
