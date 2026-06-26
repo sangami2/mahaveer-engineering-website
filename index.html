@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahaveer Engineering — Industrial & Mobile Equipment Parts</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;500;600;700&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --orange: #FF6B00;
+    --orange-dim: rgba(255,107,0,0.1);
+    --orange-line: rgba(255,107,0,0.2);
+    --dark:  #0C0C0C;
+    --dark2: #111111;
+    --dark3: #171717;
+    --dark4: #1E1E1E;
+    --gray:  #555;
+    --muted: #777;
+    --light: #BABABA;
+    --white: #EFEFEF;
+  }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--dark);
+    color: var(--light);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─────────── NAV ─────────── */
+  body > nav {
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 999;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    box-shadow: 0 1px 0 rgba(255,107,0,0.12);
+    height: 78px;
+    display: flex; align-items: center;
+    padding: 0 clamp(20px, 4vw, 56px);
+  }
+  /* Logo — clearly visible, sits left, never clipped */
+  .nav-logo {
+    margin-right: auto;
+    display: flex; align-items: center;
+  }
+  .nav-logo img {
+    height: 46px; width: auto; max-width: none;
+    display: block;
+  }
+  /* Links — clustered right, bright & readable */
+  .nav-links {
+    display: flex; align-items: center; gap: 6px;
+    list-style: none; margin: 0; padding: 0;
+  }
+  .nav-links > li { display: flex; }
+  .nav-links a {
+    color: #CFCFCF; text-decoration: none;
+    font-size: 14px; font-weight: 400; letter-spacing: 0.4px;
+    padding: 10px 16px; border-radius: 6px;
+    transition: color 0.2s, background 0.2s;
+    white-space: nowrap; position: relative;
+  }
+  .nav-links a:not(.nav-cta):hover {
+    color: #FFFFFF; background: rgba(255,255,255,0.05);
+  }
+  /* Orange underline accent on hover */
+  .nav-links a:not(.nav-cta)::after {
+    content: ''; position: absolute; left: 16px; right: 16px; bottom: 4px;
+    height: 2px; background: var(--orange);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.22s ease;
+  }
+  .nav-links a:not(.nav-cta):hover::after { transform: scaleX(1); }
+  /* CTA — solid orange button */
+  .nav-cta {
+    margin-left: 12px;
+    background: var(--orange) !important; color: #0C0C0C !important;
+    padding: 11px 24px !important; border-radius: 6px;
+    font-size: 13px !important; font-weight: 600 !important;
+    letter-spacing: 0.6px !important;
+    transition: filter 0.2s, transform 0.15s !important;
+  }
+  .nav-cta:hover { filter: brightness(1.1); transform: translateY(-1px); }
+  .nav-cta::after { display: none !important; }
+
+  /* ─────────── HERO ─────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 78px;
+    overflow: hidden;
+  }
+
+  /* Left panel */
+  .hero-left {
+    padding: 100px 60px;
+    display: flex; flex-direction: column; justify-content: center;
+    position: relative;
+    background: var(--dark);
+  }
+  /* Orange line grid on left panel */
+  .hero-left::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,107,0,0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,107,0,0.055) 1px, transparent 1px);
+    background-size: 56px 56px;
+    pointer-events: none;
+  }
+
+  /* Right panel — stock image, NO orange line */
+  .hero-right { position: relative; overflow: hidden; }
+  .hero-right img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    filter: brightness(0.65) grayscale(15%);
+    display: block;
+  }
+  .hero-right::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(90deg, var(--dark) 0%, transparent 30%),
+                linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 12px;
+    color: var(--orange); font-size: 11px; font-weight: 500;
+    letter-spacing: 4px; text-transform: uppercase;
+    margin-bottom: 32px;
+  }
+  .hero-eyebrow::before { content: ''; width: 32px; height: 1px; background: var(--orange); }
+
+  h1.hero-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(52px, 6.5vw, 92px);
+    font-weight: 700;           /* was 900 — now lighter */
+    line-height: 0.95;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 28px;
+  }
+  h1.hero-title em { color: var(--orange); font-style: normal; }
+
+  .hero-sub {
+    font-size: 16px; font-weight: 300;
+    color: var(--muted); line-height: 1.8;
+    max-width: 420px; margin-bottom: 48px;
+  }
+  .hero-btns { display: flex; gap: 14px; margin-bottom: 72px; }
+  .btn-orange {
+    background: var(--orange); color: #0C0C0C;
+    padding: 14px 32px; font-size: 13px; font-weight: 600;
+    letter-spacing: 1px; text-decoration: none;
+    clip-path: polygon(10px 0%, 100% 0%, calc(100% - 10px) 100%, 0% 100%);
+    transition: all 0.25s; display: inline-block;
+  }
+  .btn-orange:hover { background: #FF8C3A; transform: translateY(-2px); }
+  .btn-ghost {
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--light); text-decoration: none;
+    padding: 14px 32px; font-size: 13px; font-weight: 400;
+    letter-spacing: 0.5px;
+    transition: all 0.25s; display: inline-block;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,0.35); color: var(--white); }
+
+  .hero-stats { display: flex; gap: 0; }
+  .hstat {
+    padding: 0 32px;
+    border-right: 1px solid rgba(255,255,255,0.07);
+  }
+  .hstat:first-child { padding-left: 0; }
+  .hstat:last-child { border: none; }
+  .hstat-val {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 40px; font-weight: 600;
+    color: var(--white); line-height: 1;
+  }
+  .hstat-val span { color: var(--orange); }
+  .hstat-key { font-size: 10px; color: #888; letter-spacing: 2.5px; text-transform: uppercase; margin-top: 6px; }
+
+
+  /* ─────────── TICKER ─────────── */
+  .ticker { background: var(--orange); padding: 12px 0; overflow: hidden; }
+  .ticker-inner { display: inline-flex; animation: ticker 22s linear infinite; white-space: nowrap; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .t { font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.92); padding: 0 30px; }
+  .tsep { color: rgba(255,255,255,0.35); }
+
+  /* ─────────── PARTNERS ─────────── */
+  .partners {
+    background: var(--dark2);
+    padding: 48px 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .partners-label {
+    font-size: 10px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--gray); text-align: center; margin-bottom: 32px;
+  }
+  .partners-row { display: flex; align-items: center; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  /* Real brand logos shown on clean white chips */
+  .partner-logo {
+    display: flex; align-items: center; justify-content: center;
+    background: #fff; border-radius: 10px;
+    padding: 16px 30px; min-height: 88px;
+    box-shadow: 0 8px 28px rgba(0,0,0,0.32);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .partner-logo:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 34px rgba(0,0,0,0.4);
+  }
+  .partner-logo svg { display: block; height: 52px; width: auto; }
+  /* Inline SVG brand logos */
+  .partner-name { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 600; letter-spacing: 2px; }
+  .partner-sub { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; }
+
+  /* ─────────── SECTION ─────────── */
+  .section { padding: 110px 60px; }
+  .s-eyebrow {
+    font-size: 10px; font-weight: 500; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .s-eyebrow::before { content: '//'; color: rgba(255,107,0,0.35); font-size: 12px; }
+  h2.s-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: clamp(34px, 4.5vw, 58px);
+    font-weight: 600;           /* was 900 — lighter */
+    text-transform: uppercase;
+    letter-spacing: -0.5px;
+    line-height: 1.0;
+    color: var(--white); margin-bottom: 56px;
+  }
+  h2.s-title em { color: var(--orange); font-style: normal; }
+
+  /* ─────────── ABOUT ─────────── */
+  .about { background: var(--dark2); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+
+  .about-img {
+    position: relative; overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--dark3);
+  }
+  .about-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(30%) brightness(0.65);
+  }
+  .about-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,107,0,0.12), transparent 60%);
+  }
+  .about-img::after {
+    content: '';
+    position: absolute; top: 0; left: 0; bottom: 0;
+    width: 3px; background: var(--orange);
+  }
+  .about-img-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+    padding: 28px 20px 14px;
+    font-size: 10px; color: var(--gray); letter-spacing: 2.5px; text-transform: uppercase;
+  }
+
+  .about-content h2.s-title { margin-bottom: 24px; }
+  .about-content p { font-size: 15px; font-weight: 300; color: var(--muted); line-height: 1.9; margin-bottom: 18px; }
+  .feat-list { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 32px; }
+  .feat {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255,255,255,0.05);
+    font-size: 13px; font-weight: 400; color: var(--light);
+    transition: border-color 0.2s;
+  }
+  .feat:hover { border-color: var(--orange-line); }
+  .feat::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--orange); flex-shrink: 0; }
+
+  /* ─────────── PRODUCTS ─────────── */
+  .products-header {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; margin-bottom: 48px;
+  }
+  .products-header h2.s-title { margin-bottom: 0; }
+  .see-all {
+    color: var(--orange); text-decoration: none;
+    font-size: 12px; font-weight: 500; letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255,107,0,0.3);
+    padding-bottom: 2px; transition: border-color 0.2s;
+  }
+  .see-all:hover { border-color: var(--orange); }
+
+  .prod-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.03); }
+  .prod-card {
+    background: var(--dark2); padding: 0;
+    position: relative; overflow: hidden;
+    transition: background 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .prod-card:hover { background: var(--dark3); }
+  .prod-card:hover .pc-img img { filter: grayscale(20%) brightness(0.7); transform: scale(1.04); }
+  .prod-card:hover .pc-arrow { color: var(--orange); }
+
+  /* orange top-bar on hover */
+  .prod-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: var(--orange);
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .prod-card:hover::before { transform: scaleX(1); }
+
+  .pc-img {
+    width: 100%; height: 200px; overflow: hidden;
+    position: relative;
+  }
+  .pc-img img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: grayscale(20%) brightness(0.75);
+    transition: all 0.4s;
+    display: block;
+  }
+  .prod-card:hover .pc-img img { filter: grayscale(10%) brightness(0.75); transform: scale(1.04); }
+  .pc-img-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--dark2));
+    pointer-events: none;
+  }
+  .pc-tag {
+    position: absolute; top: 14px; right: 14px;
+    background: var(--orange); color: #000;
+    font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px; z-index: 1;
+  }
+
+  .pc-body { padding: 28px 28px 32px; flex: 1; display: flex; flex-direction: column; }
+  .pc-num { font-size: 10px; color: var(--orange); font-weight: 500; letter-spacing: 3px; margin-bottom: 8px; }
+  .pc-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--white); margin-bottom: 10px; line-height: 1.1;
+  }
+  .pc-desc { font-size: 13px; color: var(--muted); line-height: 1.7; font-weight: 300; flex: 1; margin-bottom: 20px; }
+  .pc-links { display: flex; gap: 16px; align-items: center; }
+  .pc-arrow { color: #444; font-size: 18px; transition: color 0.2s; text-decoration: none; }
+  .pc-pdf {
+    font-size: 11px; color: var(--orange); font-weight: 500;
+    letter-spacing: 1px; text-decoration: none;
+    border-bottom: 1px solid rgba(255,107,0,0.3);
+    transition: border-color 0.2s;
+  }
+  .pc-pdf:hover { border-color: var(--orange); }
+
+  /* More card */
+  .prod-card.more {
+    grid-column: span 3;
+    background: var(--dark3);
+    display: block;
+  }
+  .prod-card.more:hover { background: var(--dark4); }
+  .prod-card.more::before { transform: scaleX(1); }
+  .more-inner {
+    padding: 40px 40px;
+    display: flex; align-items: center; justify-content: space-between; gap: 48px;
+  }
+  .more-left h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 26px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--white); margin-bottom: 8px;
+  }
+  .more-left p { font-size: 14px; color: var(--muted); font-weight: 300; }
+  .chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    border: 1px solid rgba(255,255,255,0.08);
+    padding: 7px 14px; font-size: 11px;
+    color: var(--muted); font-weight: 400;
+    transition: all 0.2s; text-decoration: none; cursor: pointer;
+  }
+  .chip:hover { border-color: var(--orange-line); color: var(--orange); }
+
+  /* ─────────── CATALOGUES ─────────── */
+  .catalogue { background: var(--dark2); }
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: rgba(255,255,255,0.03); }
+  .cat-card {
+    background: var(--dark2); padding: 40px 32px;
+    text-align: center; text-decoration: none; display: block;
+    transition: background 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .cat-card::before {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px; background: var(--orange);
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .cat-card:hover { background: var(--dark3); }
+  .cat-card:hover::before { transform: scaleX(1); }
+  .cat-card:hover .cat-dl { color: var(--orange); }
+  .cat-icon {
+    width: 64px; height: 64px; margin: 0 auto 20px;
+    background: var(--dark3); border: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cat-icon svg { width: 30px; height: 30px; }
+  .cat-name {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 18px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--white); margin-bottom: 6px;
+  }
+  .cat-sub { font-size: 12px; color: var(--gray); font-weight: 300; margin-bottom: 20px; }
+  .cat-dl { font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: 2px; text-transform: uppercase; transition: color 0.2s; }
+
+  /* ─────────── CONTACT ─────────── */
+  .contact { background: var(--dark); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 80px; }
+  .contact-info h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; color: var(--white); margin-bottom: 12px;
+  }
+  .contact-info > p { font-size: 14px; font-weight: 300; color: var(--muted); line-height: 1.8; margin-bottom: 40px; }
+  .citem { display: flex; gap: 16px; padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.05); align-items: center; }
+  .citem:last-child { border: none; }
+  .citem-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--dark3); border: 1px solid rgba(255,255,255,0.06);
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .citem-label { font-size: 10px; color: var(--gray); letter-spacing: 2.5px; text-transform: uppercase; }
+  .citem-val { font-size: 14px; font-weight: 400; color: var(--light); margin-top: 3px; }
+  .citem-val a { color: inherit; text-decoration: none; transition: color 0.2s; }
+  .citem-val a:hover { color: var(--orange); }
+
+  form { display: flex; flex-direction: column; gap: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  input, textarea, select {
+    background: var(--dark2);
+    border: 1px solid rgba(255,255,255,0.07);
+    color: var(--white); padding: 14px 18px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px; font-weight: 300;
+    outline: none; width: 100%;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus { border-color: rgba(255,107,0,0.4); }
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.18); }
+  textarea { height: 130px; resize: none; }
+  .form-submit {
+    background: var(--orange); color: #0C0C0C;
+    border: none; padding: 15px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 15px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer;
+    clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+    transition: background 0.2s; width: 100%;
+  }
+  .form-submit:hover { background: #FF8C3A; }
+
+  /* ─────────── FOOTER ─────────── */
+  footer {
+    background: #080808;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    padding: 40px 60px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .footer-logo img { height: 34px; width: auto; display: block; }
+  .footer-copy { font-size: 12px; color: var(--gray); }
+  .footer-nav { display: flex; gap: 24px; }
+  .footer-nav a { color: var(--gray); text-decoration: none; font-size: 12px; transition: color 0.2s; }
+  .footer-nav a:hover { color: var(--orange); }
+
+  /* ─────────── UTILS ─────────── */
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, rgba(255,107,0,0.3), transparent); }
+
+  /* ─────────── HAMBURGER ─────────── */
+  .nav-burger {
+    display: none;
+    flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; padding: 8px;
+    background: none; border: none; cursor: pointer; margin-left: auto;
+  }
+  .nav-burger span {
+    display: block; height: 2px; background: var(--white);
+    border-radius: 2px; transition: all 0.25s;
+    transform-origin: center;
+  }
+  .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ─────────── FORM SUCCESS ─────────── */
+  .form-success {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 16px; padding: 60px 40px; text-align: center;
+    background: var(--dark2); border: 1px solid rgba(255,107,0,0.2);
+  }
+  .form-success-icon {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: rgba(255,107,0,0.12); border: 2px solid var(--orange);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px;
+  }
+  .form-success h3 {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1px; color: var(--white);
+  }
+  .form-success p { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 320px; }
+  .form-error {
+    font-size: 13px; color: #ff4444; padding: 10px 14px;
+    background: rgba(255,68,68,0.08); border: 1px solid rgba(255,68,68,0.2);
+    text-align: center;
+  }
+  input.invalid, textarea.invalid { border-color: rgba(255,68,68,0.5) !important; }
+  .form-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* ─────────── TABLET / IPAD (769px–1024px) ─────────── */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    /* Nav — desktop nav stays, just tighten padding */
+    body > nav { padding: 0 32px; }
+
+    /* Hero — keep 2-col, compress padding & text */
+    .hero-left { padding: 60px 40px; }
+    h1.hero-title { font-size: clamp(42px, 5.5vw, 68px); }
+    .hero-sub { font-size: 15px; max-width: 360px; margin-bottom: 36px; }
+    .hero-btns { margin-bottom: 48px; }
+    .hstat-val { font-size: 32px; }
+    .hstat { padding: 0 22px; }
+
+    /* Partners */
+    .partners { padding: 40px 40px; }
+    .partners-row { gap: 20px; }
+    .partner-logo { padding: 14px 22px; min-height: 76px; }
+    .partner-logo svg { height: 44px; }
+
+    /* Section padding */
+    .section { padding: 80px 40px; }
+
+    /* About — keep 2-col, tighten gap */
+    .about-grid { gap: 44px; }
+
+    /* Products — 2 cols instead of 3 */
+    .prod-grid { grid-template-columns: 1fr 1fr; }
+    .prod-card.more { grid-column: span 2; }
+    .more-inner { padding: 32px 32px; gap: 32px; }
+
+    /* Contact — keep 2-col, tighten gap */
+    .contact-grid { gap: 48px; }
+
+    /* Footer */
+    footer { padding: 36px 40px; }
+  }
+
+  /* ─────────── MOBILE / RESPONSIVE ─────────── */
+  @media (max-width: 768px) {
+    /* Nav */
+    .nav-burger { display: flex; }
+    .nav-links {
+      display: none; position: absolute; top: 78px; left: 0; right: 0;
+      flex-direction: column; gap: 0;
+      background: rgba(10,10,10,0.98);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid rgba(255,107,0,0.15);
+      padding: 12px 0 20px;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links > li { display: block; }
+    .nav-links a {
+      display: block; padding: 14px 28px;
+      font-size: 16px; border-radius: 0;
+    }
+    .nav-links a:not(.nav-cta)::after { display: none; }
+    .nav-cta {
+      margin: 12px 24px 0 !important; display: block; text-align: center;
+      padding: 13px 24px !important;
+    }
+    body > nav { position: sticky; top: 0; }
+
+    /* Hero */
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 78px; }
+    .hero-right { order: -1; height: 260px; }
+    .hero-right::before {
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, var(--dark) 100%);
+    }
+    .hero-left { padding: 40px 24px 56px; align-items: center; text-align: center; }
+    h1.hero-title { font-size: clamp(40px, 10vw, 60px); }
+    .hero-eyebrow { display: flex; width: 100%; justify-content: center; font-size: 9px; letter-spacing: 2px; gap: 8px; overflow: hidden; }
+    .hero-eyebrow::before { width: 16px; flex-shrink: 0; }
+    .hero-sub { font-size: 14px; max-width: 100%; margin-bottom: 32px; text-align: center; }
+    .hero-btns { flex-direction: column; gap: 10px; margin-bottom: 48px; align-items: center; }
+    .btn-orange, .btn-ghost { text-align: center; padding: 14px 24px; width: 100%; max-width: 280px; }
+    .hero-stats { gap: 0; justify-content: center; }
+    .hstat { padding: 0 20px; text-align: center; }
+    .hstat-val { font-size: 28px; }
+
+    /* Partners */
+    .partners { padding: 40px 24px; }
+    .partners-row { gap: 16px; }
+    .partner-logo { padding: 12px 20px; min-height: 72px; }
+    .partner-logo svg { height: 38px; }
+
+    /* Section */
+    .section { padding: 64px 24px; }
+
+    /* About */
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-img { aspect-ratio: 16/9; }
+    .feat-list { grid-template-columns: 1fr 1fr; }
+
+    /* Products */
+    .prod-grid { grid-template-columns: 1fr 1fr; }
+    .prod-card.more { grid-column: span 2; }
+    .more-inner { flex-direction: column; align-items: center; text-align: center; gap: 24px; padding: 28px; }
+    .more-inner .chips { justify-content: center; }
+    .more-inner .btn-orange { text-align: center; }
+
+    /* Contact */
+    .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+    .citem-row { display: flex; flex-direction: row; border: 1px solid rgba(255,255,255,0.05); }
+    .citem-row .citem { flex: 1; flex-direction: column; align-items: center; text-align: center; padding: 14px 8px; border-bottom: none; border-right: 1px solid rgba(255,255,255,0.05); }
+    .citem-row .citem:last-child { border-right: none; }
+    .citem-row .citem-val { font-size: 11px; word-break: break-all; }
+    .citem-row .citem-val a { font-size: 11px; }
+
+    /* Footer */
+    footer { flex-direction: column; text-align: center; padding: 40px 24px; gap: 16px; }
+    .footer-nav { justify-content: center; }
+  }
+
+  @media (max-width: 480px) {
+    /* Nav stays relative so page scrolls naturally on small screens */
+    body > nav { height: 64px; }
+    .nav-links { top: 64px; }
+    .nav-logo img { height: 36px; }
+
+    /* Hero */
+    .hero { padding-top: 64px; }
+    .hero-right { height: 200px; }
+    h1.hero-title { font-size: 38px; }
+    .hero-eyebrow { font-size: 10px; margin-bottom: 20px; }
+    .hero-btns { flex-direction: column; }
+    .hstat-val { font-size: 24px; }
+    .hstat { padding: 0 14px; }
+
+    /* Products single col */
+    .prod-grid { grid-template-columns: 1fr; }
+    .prod-card.more { grid-column: span 1; }
+
+    /* Partners: 2 per row */
+    .partner-logo { flex: 1 1 calc(50% - 8px); min-width: 140px; }
+
+    /* Form row */
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Section */
+    .section { padding: 48px 20px; }
+    h2.s-title { font-size: clamp(28px, 8vw, 40px); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <img src="logo-transparent.png" alt="Mahaveer Engineering">
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+  </ul>
+  <button class="nav-burger" id="navBurger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero" id="home">
+  <!-- Left -->
+  <div class="hero-left">
+    <div class="hero-eyebrow">Industrial &amp; Mobile Equipment Parts</div>
+    <h1 class="hero-title">
+      The parts<br>
+      your machine<br>
+      <em>relies on.</em>
+    </h1>
+    <p class="hero-sub">
+      Your trusted supplier of hydraulic systems, steering units, actuator motors, and precision-engineered industrial components. Any solution. Any application.
+    </p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-orange">Explore Products</a>
+      <a href="#contact" class="btn-ghost">Get a Quote</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-val">20<span>+</span></div>
+        <div class="hstat-key">Years Experience</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val">500<span>+</span></div>
+        <div class="hstat-key">Products</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val">100<span>%</span></div>
+        <div class="hstat-key">Genuine Parts</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Right — hydraulic motor image -->
+  <div class="hero-right">
+    <img
+      src="https://images.unsplash.com/photo-1599256630632-1377c6c56192?auto=format&fit=crop&w=1400&q=85"
+      alt="Hydraulic motor unit"
+    >
+  </div>
+
+</section>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="t">Electro Hydraulic Steering</span><span class="tsep"> · </span>
+    <span class="t">Rotary Actuators</span><span class="tsep"> · </span>
+    <span class="t">Hydraulic Pumps</span><span class="tsep"> · </span>
+    <span class="t">Control Valves</span><span class="tsep"> · </span>
+    <span class="t">Hydraulic Cylinders</span><span class="tsep"> · </span>
+    <span class="t">Seals &amp; Gaskets</span><span class="tsep"> · </span>
+    <span class="t">Mobile Equipment Parts</span><span class="tsep"> · </span>
+    <span class="t">Complete Hydraulic Solutions</span><span class="tsep"> · </span>
+    <span class="t">Electro Hydraulic Steering</span><span class="tsep"> · </span>
+    <span class="t">Rotary Actuators</span><span class="tsep"> · </span>
+    <span class="t">Hydraulic Pumps</span><span class="tsep"> · </span>
+    <span class="t">Control Valves</span><span class="tsep"> · </span>
+    <span class="t">Hydraulic Cylinders</span><span class="tsep"> · </span>
+    <span class="t">Seals &amp; Gaskets</span><span class="tsep"> · </span>
+    <span class="t">Mobile Equipment Parts</span><span class="tsep"> · </span>
+    <span class="t">Complete Hydraulic Solutions</span><span class="tsep"> · </span>
+  </div>
+</div>
+
+<!-- ═══ PARTNERS ═══ -->
+<section class="partners">
+  <div class="partners-label">Authorised Distributor For</div>
+  <div class="partners-row">
+
+    <!-- White Hydraulics -->
+    <div class="partner-logo">
+      <svg width="232" height="64" viewBox="0 0 232 64" xmlns="http://www.w3.org/2000/svg">
+        <!-- Circular emblem: teal ring + orange arc + slanted bars -->
+        <g transform="translate(4,6)">
+          <circle cx="26" cy="26" r="24" fill="none" stroke="#17677A" stroke-width="7"
+                  stroke-dasharray="108 43" stroke-dashoffset="26" transform="rotate(-90 26 26)"/>
+          <circle cx="26" cy="26" r="24" fill="none" stroke="#E8742C" stroke-width="7"
+                  stroke-dasharray="30 121" stroke-dashoffset="-94" transform="rotate(-90 26 26)"/>
+          <g fill="#17677A">
+            <polygon points="14,36 19,36 26,16 21,16"/>
+            <polygon points="23,36 28,36 35,16 30,16"/>
+            <polygon points="32,36 37,36 44,16 39,16"/>
+          </g>
+        </g>
+        <!-- Wordmark -->
+        <text x="66" y="32" font-family="Arial" font-weight="800" font-size="21" fill="#17677A" letter-spacing="0.3">White</text>
+        <text x="67" y="50" font-family="Arial" font-weight="400" font-size="12.5" fill="#7A8A8E" letter-spacing="3.2">HYDRAULICS</text>
+      </svg>
+    </div>
+
+    <!-- Bosch Rexroth -->
+    <div class="partner-logo">
+      <svg width="206" height="64" viewBox="0 0 206 64" xmlns="http://www.w3.org/2000/svg">
+        <!-- rexroth wordmark -->
+        <text x="4" y="38" font-family="Arial" font-weight="800" font-size="36" fill="#00355A" letter-spacing="-1">rexroth</text>
+        <!-- signature multicolour accent -->
+        <rect x="6"   y="44" width="44" height="5" fill="#00A1DE"/>
+        <rect x="52"  y="44" width="44" height="5" fill="#2E6CB4"/>
+        <rect x="98"  y="44" width="44" height="5" fill="#4C6E86"/>
+        <rect x="144" y="44" width="44" height="5" fill="#E2001A"/>
+        <!-- subtitle -->
+        <text x="6" y="61" font-family="Arial" font-weight="400" font-size="12.5" fill="#00355A" letter-spacing="0.3">A Bosch Company</text>
+      </svg>
+    </div>
+
+    <!-- Walvoil -->
+    <div class="partner-logo">
+      <svg width="220" height="64" viewBox="0 0 220 64" xmlns="http://www.w3.org/2000/svg">
+        <!-- grey ellipse with white chevron -->
+        <ellipse cx="29" cy="27" rx="27" ry="18" fill="#8C8F91"/>
+        <path d="M16 33 L29 19 L42 33" fill="none" stroke="#fff" stroke-width="4.5"
+              stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- wordmark -->
+        <text x="64" y="38" font-family="Arial" font-weight="700" font-size="32" fill="#7A2E35" letter-spacing="0.3">walvoil</text>
+        <text x="66" y="56" font-family="Arial" font-weight="400" font-size="9.5" fill="#8C8F91" letter-spacing="4">MOTION BY PEOPLE</text>
+      </svg>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about section" id="about">
+  <div class="about-grid">
+    <div class="about-img">
+      <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=900&q=80" alt="Hydraulic engineering components">
+      <div class="about-img-overlay"></div>
+      <div class="about-img-caption">Industrial Manufacturing &amp; Supply</div>
+    </div>
+    <div class="about-content">
+      <div class="s-eyebrow">Who We Are</div>
+      <h2 class="s-title">Built for <em>Industry</em></h2>
+      <p>Mahaveer Engineering is your trusted partner for complete hydraulic solutions. As authorised distributors for White Hydraulics, Bosch Rexroth, and Walvoil, we supply genuine, world-class components you can depend on.</p>
+      <p>Whether you need steering units, hydraulic pumps, actuator motors, control valves, or a fully custom hydraulic solution — we have the stock, the expertise, and the supplier network to deliver it.</p>
+      <div class="feat-list">
+        <div class="feat">Genuine, Authorised Parts</div>
+        <div class="feat">Complete Hydraulic Solutions</div>
+        <div class="feat">Expert Technical Support</div>
+        <div class="feat">Fast Turnaround</div>
+        <div class="feat">Competitive Pricing</div>
+        <div class="feat">Custom Configurations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ═══ PRODUCTS ═══ -->
+<section class="section" id="products" style="background: var(--dark);">
+  <div class="products-header">
+    <div>
+      <div class="s-eyebrow">What We Supply</div>
+      <h2 class="s-title">Our <em>Products</em></h2>
+    </div>
+    <a href="#contact" class="see-all">Request a Quote →</a>
+  </div>
+
+  <div class="prod-grid">
+
+    <!-- 01 Electro Hydraulic Steering -->
+    <div class="prod-card">
+      <div class="pc-img">
+        <img src="https://images.unsplash.com/photo-1572455927199-b2198bb2763d?auto=format&fit=crop&w=700&q=80" alt="Hydraulic Steering Unit">
+        <div class="pc-img-overlay"></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-num">01 — STEERING</div>
+        <div class="pc-name">Electro Hydraulic Steering</div>
+        <div class="pc-desc">Precision electro-hydraulic steering units for industrial and mobile equipment. Engineered for reliability in demanding operating conditions.</div>
+        <div class="pc-links">
+          <a href="#contact" class="pc-arrow">→</a>
+          <a href="https://www.mahaveerengineering.com/_files/ugd/2f6fe1_53ffd1f7fef54c25b2802e7d999ff175.pdf" target="_blank" class="pc-pdf">⬇ Download Catalogue</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 02 Rotary Actuator -->
+    <div class="prod-card">
+      <div class="pc-img">
+        <img src="https://images.unsplash.com/photo-1625465104163-bd40822e6450?auto=format&fit=crop&w=700&q=80" alt="Rotary Actuator">
+        <div class="pc-img-overlay"></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-num">02 — ACTUATORS</div>
+        <div class="pc-name">Rotary Actuators</div>
+        <div class="pc-desc">High-torque rotary actuators for precise angular motion control. Used in industrial machinery, mobile equipment, and automation systems.</div>
+        <div class="pc-links">
+          <a href="#contact" class="pc-arrow">→</a>
+          <a href="https://www.mahaveerengineering.com/_files/ugd/2f6fe1_c707ca5f5526495e934b9c3303cf0e6b.pdf" target="_blank" class="pc-pdf">⬇ Download Catalogue</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 Hydraulic Gear Pump -->
+    <div class="prod-card">
+      <div class="pc-img">
+        <img src="https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=700&q=80" alt="Hydraulic Pump">
+        <div class="pc-img-overlay"></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-num">03 — PUMPS</div>
+        <div class="pc-name">Hydraulic &amp; Water Pumps</div>
+        <div class="pc-desc">Gear, piston, and vane hydraulic pumps — plus water pumps for industrial applications. All major specifications available on enquiry.</div>
+        <div class="pc-links">
+          <a href="#contact" class="pc-arrow">→</a>
+          <a href="https://www.mahaveerengineering.com/_files/ugd/2f6fe1_e1c9b09c4edf41b292c6235468df6214.pdf" target="_blank" class="pc-pdf">⬇ Download Catalogue</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 04 Control Valves -->
+    <div class="prod-card">
+      <div class="pc-img">
+        <img src="https://images.unsplash.com/photo-1563456020159-b74d67e78c26?auto=format&fit=crop&w=700&q=80" alt="Control Valves">
+        <div class="pc-img-overlay"></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-num">04 — VALVES</div>
+        <div class="pc-name">Control Valves</div>
+        <div class="pc-desc">Directional, pressure, and flow control valves for complete hydraulic circuit management. Walvoil and Bosch Rexroth ranges stocked.</div>
+        <div class="pc-links">
+          <a href="#contact" class="pc-arrow">→</a>
+          <a href="#contact" class="pc-pdf">Enquire for Catalogue</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 Hydraulic Cylinder -->
+    <div class="prod-card">
+      <div class="pc-img">
+        <img src="https://images.unsplash.com/photo-1591685625550-c7918f629c46?auto=format&fit=crop&w=700&q=80" alt="Hydraulic Cylinder">
+        <div class="pc-img-overlay"></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-num">05 — CYLINDERS</div>
+        <div class="pc-name">Hydraulic Cylinders</div>
+        <div class="pc-desc">Single and double-acting hydraulic cylinders for linear force applications in industrial and mobile machinery.</div>
+        <div class="pc-links">
+          <a href="#contact" class="pc-arrow">→</a>
+          <a href="#contact" class="pc-pdf">Enquire for Catalogue</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 Seals & Components -->
+    <div class="prod-card">
+      <div class="pc-img">
+        <img src="https://images.unsplash.com/photo-1546199881-948df3ef8ce1?auto=format&fit=crop&w=700&q=80" alt="Seals and Components">
+        <div class="pc-img-overlay"></div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-num">06 — COMPONENTS</div>
+        <div class="pc-name">Seals &amp; Components</div>
+        <div class="pc-desc">High-performance seals, gaskets, filters, hoses, and fittings for hydraulic and pneumatic systems across all operating pressures.</div>
+        <div class="pc-links">
+          <a href="#contact" class="pc-arrow">→</a>
+          <a href="#contact" class="pc-pdf">Enquire for Catalogue</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- And More -->
+    <div class="prod-card more">
+      <div class="more-inner">
+        <div class="more-left">
+          <div class="pc-num">COMPLETE SOLUTIONS</div>
+          <h3>Can't find what you need? We'll source it.</h3>
+          <p>We can provide any hydraulic solution — custom configurations, OEM parts, or specialist components. Just tell us what you need.</p>
+        </div>
+        <div class="chips">
+          <a href="#contact" class="chip">Hydraulic Hoses</a>
+          <a href="#contact" class="chip">Accumulators</a>
+          <a href="#contact" class="chip">Pressure Gauges</a>
+          <a href="#contact" class="chip">Manifolds</a>
+          <a href="#contact" class="chip">Couplings</a>
+          <a href="#contact" class="chip">Sensors</a>
+          <a href="#contact" class="chip">Mobile Parts</a>
+          <a href="#contact" class="chip">Custom Orders</a>
+        </div>
+        <a href="#contact" class="btn-orange" style="white-space:nowrap; flex-shrink:0;">Request a Quote</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact section" id="contact">
+  <div class="s-eyebrow">Get in Touch</div>
+  <h2 class="s-title">Request a <em>Quote</em></h2>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>We respond within 24 hours</h3>
+      <p>Tell us what you need — a specific part, a custom hydraulic solution, or a bulk order — and we'll get back to you with pricing and availability.</p>
+      <div class="citem-row">
+        <div class="citem">
+          <div class="citem-icon">✉</div>
+          <div>
+            <div class="citem-label">Email</div>
+            <div class="citem-val"><a href="mailto:shashikanth@mahaveerengineering.com">shashikanth@mahaveerengineering.com</a></div>
+          </div>
+        </div>
+        <div class="citem">
+          <div class="citem-icon">📞</div>
+          <div>
+            <div class="citem-label">Shashikanth</div>
+            <div class="citem-val"><a href="tel:+919341067043">+91 93410 67043</a></div>
+          </div>
+        </div>
+        <div class="citem">
+          <div class="citem-icon">📍</div>
+          <div>
+            <div class="citem-label">Location</div>
+            <div class="citem-val">Bangalore, India</div>
+          </div>
+        </div>
+        <div class="citem">
+          <div class="citem-icon">⏱</div>
+          <div>
+            <div class="citem-label">Response Time</div>
+            <div class="citem-val">Within 24 hours</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form id="enquiryForm">
+      <div class="form-row">
+        <input type="text" name="name" placeholder="Your name" autocomplete="name">
+        <input type="email" name="email" placeholder="Email address" autocomplete="email">
+      </div>
+      <input type="tel" name="phone" placeholder="Phone number (optional)" autocomplete="tel">
+      <input type="text" name="subject" placeholder="Subject / part required">
+      <textarea name="message" placeholder="Describe your requirement — part number, quantity, application, specs…"></textarea>
+      <button type="submit" class="form-submit" id="formSubmitBtn">Send Enquiry →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <a href="#home" class="footer-logo">
+    <img src="logo-transparent.png" alt="Mahaveer Engineering">
+  </a>
+  <div class="footer-copy">©2026 Mahaveer Engineering. All rights reserved.</div>
+  <nav class="footer-nav">
+    <a href="#about">About</a>
+    <a href="#products">Products</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</footer>
+
+<script>
+  /* ── Scroll-to-top on refresh ── */
+  if (history.scrollRestoration) history.scrollRestoration = 'manual';
+  window.addEventListener('load', () => {
+    history.replaceState('', document.title, window.location.pathname + window.location.search);
+    window.scrollTo(0, 0);
+  });
+
+  /* ── Hamburger menu ── */
+  const burger = document.getElementById('navBurger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  navLinks.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      burger.classList.remove('open');
+      burger.setAttribute('aria-label', 'Open menu');
+    });
+  });
+
+  /* ── Formspree enquiry form ── */
+  const form = document.getElementById('enquiryForm');
+  const submitBtn = document.getElementById('formSubmitBtn');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    let valid = true;
+    ['name', 'email', 'message'].forEach(fieldName => {
+      const el = form.elements[fieldName];
+      if (!el.value.trim()) {
+        el.classList.add('invalid');
+        valid = false;
+      } else {
+        el.classList.remove('invalid');
+      }
+    });
+    if (!valid) return;
+
+    submitBtn.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    try {
+      const res = await fetch('https://formspree.io/f/xpqgpego', {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(form)
+      });
+
+      if (res.ok) {
+        form.innerHTML = `
+          <div class="form-success">
+            <div class="form-success-icon">✓</div>
+            <h3>Enquiry Sent</h3>
+            <p>Thanks — we'll get back to you within 24 hours with pricing and availability.</p>
+          </div>`;
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const msg = data.errors ? data.errors.map(e => e.message).join(', ') : 'Something went wrong. Please email us directly.';
+        showFormError(msg);
+        resetBtn();
+      }
+    } catch {
+      showFormError('Network error — please try again or email us directly.');
+      resetBtn();
+    }
+  });
+
+  function showFormError(msg) {
+    let err = form.querySelector('.form-error');
+    if (!err) {
+      err = document.createElement('div');
+      err.className = 'form-error';
+      submitBtn.before(err);
+    }
+    err.textContent = msg;
+  }
+
+  function resetBtn() {
+    submitBtn.textContent = 'Send Enquiry →';
+    submitBtn.disabled = false;
+  }
+
+  form.querySelectorAll('input, textarea').forEach(el => {
+    el.addEventListener('input', () => el.classList.remove('invalid'));
+  });
+
+  /* ── Product images → contact ── */
+  document.querySelectorAll('.pc-img').forEach(img => {
+    img.style.cursor = 'pointer';
+    img.addEventListener('click', () => location.href = '#contact');
+  });
+</script>
+</body>
+</html>
